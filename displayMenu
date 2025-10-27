@@ -1,0 +1,13 @@
+void displayMenu(void) {
+    printf("\n--- Inventory Management System ---\n");
+    printf("1. Add Item\n");
+    printf("2. Sell Item\n");
+    printf("3. Display Inventory\n");
+    printf("4. Restock Item\n");
+    printf("5. Check Revenue\n");
+    printf("6. Remove Item\n");
+    printf("7. Search Item by ID\n");
+    printf("8. Track Most and Least Sold Items\n");
+    printf("9. Save Inventory\n");
+    printf("10. Exit\n");
+}
