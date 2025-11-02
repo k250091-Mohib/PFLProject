@@ -1,0 +1,14 @@
+void addItem(int id, char* name, int quantity, float price) {
+    if (itemCount < MAX_ITEMS) {
+        inventory[itemCount].id = id;
+        strncpy(inventory[itemCount].name, name, 50);
+        inventory[itemCount].quantity = quantity;
+        inventory[itemCount].price = price;
+        inventory[itemCount].soldCount = 0;
+        inventory[itemCount].isDeleted = 0;
+        itemCount++;
+        printf("Item added successfully: %s\n", name);
+    } else {
+        printf("Inventory full. Cannot add more items.\n");
+    }
+}
