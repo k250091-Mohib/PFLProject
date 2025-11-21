@@ -1,0 +1,8 @@
+Item* searchItemByID(int id) {
+    for (int i = 0; i < itemCount; i++) {
+        if (inventory[i].id == id && !inventory[i].isDeleted) {
+            return &inventory[i];
+        }
+    }
+    return NULL;
+}
