@@ -24,3 +24,16 @@ void loadInventoryFromFile(void) {
         }
         inventory[i].isDeleted = 0;
     }
+
+    for (int i = 0; i < itemCount; i++) {
+        if (fscanf(file, "%d,", &Income[i]) != 1) {
+            printf("Error reading income data for item %d.\n", i + 1);
+            fclose(file);
+            return;
+        }
+    }
+    fscanf(file, "\n");
+
+    fclose(file);
+    printf("Inventory and income loaded successfully.\n");
+}
