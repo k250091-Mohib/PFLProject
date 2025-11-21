@@ -1,0 +1,20 @@
+int revenue_Check(int arr[]) {
+     if (itemCount == 0) {
+        printf("No sales have been made yet.\n");
+        return -1;
+    }
+    
+    int max = INT_MIN;
+    int rev_id = -1;
+    for (int i = 0; i < MAX_ITEMS; i++) {
+        if (arr[i] < 0) arr[i] = 0;
+        if (arr[i] > max) {
+            max = arr[i];
+            rev_id = i + 1;
+        }
+    }
+    if (rev_id != -1) {
+        printf("Item ID %d generated the most revenue of $%d\n", rev_id, max);
+    }
+    return rev_id;
+}
