@@ -1,0 +1,18 @@
+void RemoveItem(void) {
+    int num_id;
+    printf("Enter the id of the item you want to remove: ");
+    scanf("%d", &num_id);
+    
+    for (int z = 0; z < itemCount; z++) {
+        if (inventory[z].id == num_id) {
+            if (inventory[z].isDeleted) {
+                printf("Item with ID %d is already removed.\n", num_id);
+                return;
+            }
+            inventory[z].isDeleted = 1;
+            printf("Item with ID %d has been removed.\n", num_id);
+            return;
+        }
+    }
+    printf("Item with ID %d not found in inventory.\n", num_id);
+}
