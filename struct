@@ -1,0 +1,8 @@
+typedef struct Item {
+    int id;
+    char name[50];
+    int quantity;
+    float price;
+    int soldCount;
+    int isDeleted; // Flag to mark if the item is deleted
+} Item;
