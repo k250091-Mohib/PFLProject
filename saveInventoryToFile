@@ -1,0 +1,27 @@
+void saveInventoryToFile(void) {
+    FILE *file = fopen("inventory.txt", "w");
+    if (file == NULL) {
+        printf("Unable to open file for writing.\n");
+        return;
+    }
+
+    fprintf(file, "%d\n", itemCount);
+    for (int i = 0; i < itemCount; i++) {
+        if (!inventory[i].isDeleted) {
+            fprintf(file, "%d,%s,%d,%.2f,%d\n", 
+                    inventory[i].id, 
+                    inventory[i].name, 
+                    inventory[i].quantity, 
+                    inventory[i].price, 
+                    inventory[i].soldCount);
+        }
+    }
+
+    for (int i = 0; i < itemCount; i++) {
+        fprintf(file, "%d,", Income[i]);
+    }
+    fprintf(file, "\n");
+
+    fclose(file);
+    printf("Inventory and income saved successfully.\n");
+}
