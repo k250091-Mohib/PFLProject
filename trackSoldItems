@@ -1,0 +1,44 @@
+void trackSoldItems(void) {
+    if (itemCount == 0) {
+        printf("No items in inventory to analyze.\n");
+        return;
+    }
+
+    int maxSold = 0, minSold = INT_MAX;
+    int hasSoldItems = 0;
+
+    for (int i = 0; i < itemCount; i++) {
+        if (inventory[i].isDeleted) continue;
+
+        hasSoldItems = 1;
+        if (inventory[i].soldCount > maxSold) {
+            maxSold = inventory[i].soldCount;
+        }
+        if (inventory[i].soldCount < minSold) {
+            minSold = inventory[i].soldCount;
+        }
+    }
+
+    if (!hasSoldItems) {
+        printf("No items to analyze (all are deleted).\n");
+        return;
+    }
+
+    printf("\n--- Sales Report ---\n");
+
+    printf("Most Sold Item(s):\n");
+    for (int i = 0; i < itemCount; i++) {
+        if (!inventory[i].isDeleted && inventory[i].soldCount == maxSold) {
+            printf("ID: %d, Name: %s, Quantity Sold: %d\n", 
+                   inventory[i].id, inventory[i].name, inventory[i].soldCount);
+        }
+    }
+
+    printf("\nLeast Sold Item(s):\n");
+    for (int i = 0; i < itemCount; i++) {
+        if (!inventory[i].isDeleted && inventory[i].soldCount == minSold) {
+            printf("ID: %d, Name: %s, Quantity Sold: %d\n", 
+                   inventory[i].id, inventory[i].name, inventory[i].soldCount);
+        }
+    }
+}
