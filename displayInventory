@@ -1,0 +1,13 @@
+void displayInventory(void) {
+    if (itemCount == 0) {
+        printf("Inventory is empty.\n");
+    } else {
+        printf("Item List:\n");
+        for (int i = 0; i < itemCount; i++) {
+            if (!inventory[i].isDeleted) {
+                printf("ID: %d, Name: %s, Quantity: %d, Price: %.2f\n", 
+                       inventory[i].id, inventory[i].name, inventory[i].quantity, inventory[i].price);
+            }
+        }
+    }
+}
