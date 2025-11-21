@@ -1,0 +1,19 @@
+void sellItem(int id, int quantitySold) {
+    for (int i = 0; i < itemCount; i++) {
+        if (inventory[i].id == id) {
+            if (inventory[i].quantity >= quantitySold) {
+                inventory[i].quantity -= quantitySold;
+                inventory[i].soldCount += quantitySold;
+                Income[i] += (inventory[i].price * quantitySold);
+                
+                printf("Sale successful! %d units of '%s' sold.\n", quantitySold, inventory[i].name);
+                printf("Updated Quantity: %d, Total Sold: %d\n", inventory[i].quantity, inventory[i].soldCount);
+            }
+            else {
+                printf("Insufficient stock for item '%s'. Available quantity: %d.\n", inventory[i].name, inventory[i].quantity);
+            }
+            return;
+        }
+    }
+    printf("Item with ID %d not found in inventory.\n", id);
+}
