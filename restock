@@ -1,0 +1,18 @@
+void restock(void) {
+    int restock_id, rquantity;
+
+    printf("Enter the ID of the item you want to restock: ");
+    scanf("%d", &restock_id);
+    printf("Enter the quantity you want to add: ");
+    scanf("%d", &rquantity);
+
+    for (int k = 0; k < itemCount; k++) {
+        if (inventory[k].id == restock_id) {
+            inventory[k].quantity += rquantity;
+            printf("Item with ID %d restocked. New Quantity: %d\n", restock_id, inventory[k].quantity);
+            return;
+        }
+    }
+
+    printf("Item with ID %d not found in inventory.\n", restock_id);
+}
