@@ -1,0 +1,83 @@
+int main() {
+    int choice, id, quantitySold;
+    char name[50];
+    float price;
+
+    if (!login()) {
+        return 0;
+    }
+
+    loadInventoryFromFile(); // Load previous data
+
+    while (1) {
+        displayMenu();
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter Item ID: ");
+                scanf("%d", &id);
+                printf("Enter Item Name: ");
+                scanf("%s", name);
+                printf("Enter Item Quantity: ");
+                scanf("%d", &quantitySold);
+                printf("Enter Item Price: ");
+                scanf("%f", &price);
+                addItem(id, name, quantitySold, price);
+                break;
+            case 2:
+                printf("Enter Item ID to Sell: ");
+                scanf("%d", &id);
+                printf("Enter Quantity to Sell: ");
+                scanf("%d", &quantitySold);
+                sellItem(id, quantitySold);
+                break;
+            case 3:
+                displayInventory();
+                break;
+            case 4:
+                restock();
+                break;
+            case 5:
+                revenue_Check(Income);
+                break;
+            case 6:
+                RemoveItem();
+                break;
+            case 7:
+            {
+                printf("Enter ID to Search Item: ");
+                scanf("%d", &id);
+                Item* foundItem = searchItemByID(id);
+                    if (foundItem) {
+                        printf("\n--- Item Found ---\n");
+                        printf("ID: %d\n", foundItem->id);
+                        printf("Name: %s\n", foundItem->name);
+                        printf("Quantity: %d\n", foundItem->quantity);
+                        printf("Price: %.2f\n", foundItem->price);
+                        printf("Sold: %d\n", foundItem->soldCount);
+                    }
+                    else
+                    {
+                        printf("Item with ID %d not found in inventory.\n", id);
+                    }
+                    break;
+            }
+            case 8:
+                trackSoldItems();
+                break;
+            case 9:
+                saveInventoryToFile();
+                break;
+            case 10:
+                printf("Exiting the system.\n");
+                saveInventoryToFile(); // Save inventory before exit
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
