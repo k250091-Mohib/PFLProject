@@ -1,0 +1,26 @@
+void loadInventoryFromFile(void) {
+    FILE *file = fopen("inventory.txt", "r");
+    if (file == NULL) {
+        printf("Unable to open file for reading.\n");
+        return;
+    }
+
+    if (fscanf(file, "%d\n", &itemCount) != 1) {
+        printf("Error reading item count from file.\n");
+        fclose(file);
+        return;
+    }
+
+    for (int i = 0; i < itemCount; i++) {
+        if (fscanf(file, "%d,%49[^,],%d,%f,%d\n", 
+               &inventory[i].id, 
+               inventory[i].name, 
+               &inventory[i].quantity, 
+               &inventory[i].price, 
+               &inventory[i].soldCount) != 5) {
+            printf("Error reading item %d from file.\n", i + 1);
+            fclose(file);
+            return;
+        }
+        inventory[i].isDeleted = 0;
+    }
